@@ -9,15 +9,13 @@
 	xmlns:b="http://bootsfaces.net/ui">
 
 <h:head>
-	
+	<h:head>Index.xhtml</h:head>
 </h:head>
 <body>
 	
-	<b:form>
-	<input type="submit" class="btn btn-primary" value="press me"/>
-	
-	<h:commandButton action="#" styleClass="btn btn-primary" value="plzzz" />
-		<b:commandButton look="primary">Primary</b:commandButton>
-	</b:form>
+	<h:form>
+	<h:commandButton action="#{loginBean.goTo()}" value="Login Screen" />
+		<h:commandButton action="#{bookBean.goTo()}" value="fetchAllBooks"/>
+	</h:form>
 </body>
 </html>

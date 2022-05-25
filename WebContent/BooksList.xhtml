@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"> 
+
+<h:head>
+	<title>BooksList</title>
+	<h:outputStylesheet library = "css" name = "bootstrap.css" />
+	<link href="#{request.contextPath}/css/bootstrap.css"
+          rel="stylesheet" />
+</h:head> 
+<body> 
+<h:form>
+<h:dataTable value = "#{bookBean.books}" var = "book">
+   
+   <h:column>    				
+      <f:facet name = "header">Name</f:facet>    				
+      #{book.name}
+   </h:column>
+   
+   <h:column>
+      <f:facet name = "header">Author</f:facet>
+      #{book.author}
+   </h:column>
+   
+   <h:column>
+      <f:facet name = "header">DOC</f:facet>
+      #{book.dateOfCreation}
+   </h:column>
+   
+   <h:column>
+   		<h:commandButton action="#{bookBean.borrowBook(book)}" value="Borrow" styleClass="btn btn-primary"/>
+   </h:column>
+   <h:column>
+   		<b:commandButton action="#{bookBean.borrowBook(book)}" value="BootsFaces" look="primary"></b:commandButton>
+   </h:column>
+
+</h:dataTable></h:form>
+</body> 
+</html>

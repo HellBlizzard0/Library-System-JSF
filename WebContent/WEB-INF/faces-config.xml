@@ -3,13 +3,34 @@
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
  <managed-bean>
   <managed-bean-name>welcome</managed-bean-name>
-  <managed-bean-class>com.saqqa.library.bean.Welcome</managed-bean-class>
-  <managed-bean-scope>request</managed-bean-scope>
+  <managed-bean-class>bean.Welcome</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
   <managed-property>
    <property-name>message</property-name>
    <property-class>java.lang.String</property-class>
    <value/>
   </managed-property>
  </managed-bean>
+ <managed-bean>
+  <managed-bean-name>bookBean</managed-bean-name>
+  <managed-bean-class>bean.BookBean</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>loginBean</managed-bean-name>
+  <managed-bean-class>bean.LoginBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
+ <navigation-rule>
+  <from-view-id>/index.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>BooksList</from-outcome>
+   <to-view-id>/BooksList.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>Login</from-outcome>
+   <to-view-id>/Login.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
  <application/>
 </faces-config>
