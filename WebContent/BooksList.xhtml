@@ -1,42 +1,111 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:b="http://bootsfaces.net/ui"> 
-
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:utils="http://java.sun.com/jsf/composite/utils"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:head>
-	<title>BooksList</title>
-	<h:outputStylesheet library = "css" name = "bootstrap.css" />
-	<link href="#{request.contextPath}/css/bootstrap.css"
-          rel="stylesheet" />
-</h:head> 
-<body> 
-<h:form>
-<h:dataTable value = "#{bookBean.books}" var = "book">
-   
-   <h:column>    				
-      <f:facet name = "header">Name</f:facet>    				
-      #{book.name}
-   </h:column>
-   
-   <h:column>
-      <f:facet name = "header">Author</f:facet>
-      #{book.author}
-   </h:column>
-   
-   <h:column>
-      <f:facet name = "header">DOC</f:facet>
-      #{book.dateOfCreation}
-   </h:column>
-   
-   <h:column>
-   		<h:commandButton action="#{bookBean.borrowBook(book)}" value="Borrow" styleClass="btn btn-primary"/>
-   </h:column>
-   <h:column>
-   		<b:commandButton action="#{bookBean.borrowBook(book)}" value="BootsFaces" look="primary"></b:commandButton>
-   </h:column>
+	<title>Books List</title>
+	<h:outputStylesheet library="css" name="bootstrap.css" />
+	<link href="css/bootstrap.css" rel="stylesheet" />
+	<h:outputScript library="js" name="jquery-3.6.0.js" />
+	<script type="js" src="resources/js/jquery-3.6.0.js" />
+</h:head>
+<h:body>
+	<utils:MainTabs tab="books">
+		<h1>Books List</h1>
+		<b:form>
+			<b:dataTable value="#{bookBean.books}" var="book">
+				<f:facet name="header">
+					<tr>
+						<th rowspan="2">Name</th>
+						<th rowspan="2">Author</th>
+						<th rowspan="2">Available</th>
+						<th colspan="3">Options</th>
+					</tr>
+					<tr>
+						<c:choose>
+							<c:when test="#{loginBean.isCustomer()}">
+								<th>Borrow</th>
+							</c:when>
+							<c:otherwise>
+								<th>Info</th>
+								<th>Edit</th>
+								<th>Delete</th>
+							</c:otherwise>
+						</c:choose>
+					</tr>
+				</f:facet>
+				<b:dataTableColumn value="#{book.name}"></b:dataTableColumn>
+				<b:dataTableColumn value="#{book.author}"></b:dataTableColumn>
+				<b:dataTableColumn value="">
+					<b:label rendered="#{book.available}" value="Available"
+						severity="success" />
+					<b:label rendered="#{!book.available}" value="Unavailable" />
+				</b:dataTableColumn>
+				<c:choose>
+					<c:when test="#{loginBean.isCustomer()}">
+						<b:dataTableColumn>
+							<b:commandButton action="#{bookBean.borrowBook(book)}"
+								icon-awesome="edit" look="primary" />
+						</b:dataTableColumn>
+					</c:when>
+					<c:otherwise>
+						<b:dataTableColumn>
+							<b:commandButton icon-awesome="info" look="info" />
+						</b:dataTableColumn>
+						<b:dataTableColumn>
+							<b:commandButton icon-awesome="edit" look="primary" />
+						</b:dataTableColumn>
+						<b:dataTableColumn>
+							<b:commandButton icon-awesome="trash" look="danger"
+								action="#{bookBean.deleteBook(book)}" />
+						</b:dataTableColumn>
+					</c:otherwise>
+				</c:choose>
+			</b:dataTable>
+		</b:form>
+		<c:choose>
+			<c:when test="#{!loginBean.isCustomer()}">
+				<b:button value="Add New" look="success"
+					onclick="$('.modalPseudoClass').modal()" size="lg" />
+			</c:when>
+		</c:choose>
+		<b:modal id="amodal" title="New Book" styleClass="modalPseudoClass">
+			<b:inputText id="bookName" placeholder="Book Name"
+				value="#{bookBean.newBook.name}">
+				<f:facet name="prepend">
+					<b:icon name="book" />
+				</f:facet>
+			</b:inputText>
+			<b:inputText id="bookAuthor" placeholder="Author"
+				value="#{bookBean.newBook.author}">
+				<f:facet name="prepend">
+					<b:iconAwesome name="user" />
+				</f:facet>
+			</b:inputText>
+			<f:facet name="footer">
+				<b:form>
+					<b:commandButton id="btnCancel" value="Cancel" dismiss="modal"
+						action="#{bookBean.cancelAddEdit()}" />
+					<b:commandButton id="btnSubmit" value="Submit" dismiss="modal"
+						action="#{bookBean.addEditBook()}" look="primary" />
+				</b:form>
+			</f:facet>
+		</b:modal>
+		<b:modal id="bmodal" title="Delete Book" styleClass="modelDeleteBook">
 
-</h:dataTable></h:form>
-</body> 
+			<f:facet name="footer">
+				<b:form>
+					<b:commandButton id="btnCancel" value="Cancel" dismiss="modal"
+						action="#{bookBean.cancelAddEdit()}" />
+					<b:commandButton id="btnSubmit" value="Submit" dismiss="modal"
+						action="#{bookBean.addEditBook()}" look="primary" />
+				</b:form>
+			</f:facet>
+		</b:modal>
+	</utils:MainTabs>
+</h:body>
 </html>

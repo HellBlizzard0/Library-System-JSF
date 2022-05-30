@@ -11,11 +11,12 @@ import util.SessionFactory;
 
 public class UserModel {
 
+
 	public static User login(String username, String password) {
 		Session session = null;
 		String encrypted = null;
 		try {
-			session = SessionFactory.sessionObj;
+			session = SessionFactory.getSessionObj();
 			encrypted = encrypt(password);
 			Query query = session.getNamedQuery("user_login");
 			query.setParameter("P_USERNAME", username);

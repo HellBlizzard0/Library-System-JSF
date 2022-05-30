@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-configuration PUBLIC
   "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
   "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
-  <hibernate-configuration>
+<hibernate-configuration>
 	<session-factory>
 		<property name="hibernate.enable_lazy_load_no_trans">true</property>
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
@@ -11,9 +11,10 @@
 		<property name="hibernate.connection.password">00000000</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 		<property name="hibernate.current_session_context_class">thread</property>
-		<mapping class="entity.Book" />
+		<mapping class="entity.Book" /><mapping class="entity.Role" />
+		<mapping class="entity.User" />
+		
+		<mapping class="entity.Borrow" />
 
-		
-		
 	</session-factory>
 </hibernate-configuration>

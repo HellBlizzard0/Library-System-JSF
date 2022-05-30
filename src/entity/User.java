@@ -1,17 +1,23 @@
 package entity;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
-import javax.management.relation.Role;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.NamedQueries;
+import org.hibernate.annotations.NamedQuery;
+
+@NamedQueries({ @NamedQuery(name = "user_login", query = "from User u " + "where u.username = :P_USERNAME "
+		+ "and u.password = :P_PASSWORD") })
 
 @Entity
 @Table(name = "user")
@@ -30,22 +36,21 @@ public class User implements Serializable {
 	@Column(name = "password")
 	private String password;
 
-	@Column(name = "role")
 	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(referencedColumnName = "id", name = "role_id")
 	private Role role;
 
-	@Column(name = "dateOfCreation")
-	private LocalDateTime dateOfCreation;
+	@Column(name = "date_of_creation")
+	private Timestamp dateOfCreation;
 
-	@Column(name = "lastUpdated")
-	private LocalDateTime lastUpdated;
+	@Column(name = "last_updated")
+	private Timestamp lastUpdated;
 
 	public User() {
 		super();
 	}
 
-	public User(int id, String username, String password, Role role, LocalDateTime dateOfCreation,
-			LocalDateTime lastUpdated) {
+	public User(int id, String username, String password, Role role, Timestamp dateOfCreation, Timestamp lastUpdated) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -87,19 +92,19 @@ public class User implements Serializable {
 		this.role = role;
 	}
 
-	public LocalDateTime getDateOfCreation() {
+	public Timestamp getDateOfCreation() {
 		return dateOfCreation;
 	}
 
-	public void setDateOfCreation(LocalDateTime dateOfCreation) {
+	public void setDateOfCreation(Timestamp dateOfCreation) {
 		this.dateOfCreation = dateOfCreation;
 	}
 
-	public LocalDateTime getLastUpdated() {
+	public Timestamp getLastUpdated() {
 		return lastUpdated;
 	}
 
-	public void setLastUpdated(LocalDateTime lastUpdated) {
+	public void setLastUpdated(Timestamp lastUpdated) {
 		this.lastUpdated = lastUpdated;
 	}
 }

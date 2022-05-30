@@ -1,13 +1,74 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:utils="http://java.sun.com/jsf/composite/utils"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <h:head>
-<title>BorrowsList</title>
-</h:head> 
-<body> 
+	<title>Borrows List</title>
 
-</body> 
+	<h:outputStylesheet library="css" name="bootstrap.css" />
+	<link href="css/bootstrap.css" rel="stylesheet" />
+	<h:outputScript library="js" name="jquery-3.6.0.js" />
+	<script type="js" src="resources/js/jquery-3.6.0.js" />
+</h:head>
+<h:body>
+	<h:outputScript>
+
+	</h:outputScript>
+	<utils:MainTabs tab="borrows">
+		<h1>Borrows List</h1>
+		<b:form>
+			<b:dataTable value="#{borrowBean.borrows}" var="borrow">
+				<f:facet name="header">
+					<c:choose>
+						<c:when test="#{loginBean.isCustomer()}">
+							<tr>
+								<th>Book</th>
+								<th>Author</th>
+								<th>Borrow Date</th>
+								<th>Return Date</th>
+								<th>Return</th>
+							</tr>
+						</c:when>
+						<c:otherwise>
+							<th>Book</th>
+							<th>Author</th>
+							<th>Customer</th>
+							<th>Borrow Date</th>
+							<th>Return Date</th>
+						</c:otherwise>
+					</c:choose>
+				</f:facet>
+				<c:choose>
+					<c:when test="#{loginBean.isCustomer()}">
+						<b:dataTableColumn value="#{borrow.book.name}"></b:dataTableColumn>
+						<b:dataTableColumn value="#{borrow.book.author}"></b:dataTableColumn>
+						<b:dataTableColumn
+							value="#{borrow.dateOfBorrowing == null ? 'N/A' : borrow.dateOfBorrowing}"></b:dataTableColumn>
+						<b:dataTableColumn
+							value="#{borrow.returnDate == null ? 'N/A' : borrow.returnDate}"></b:dataTableColumn>
+						<b:dataTableColumn>
+							<b:commandButton rendered="#{borrow.returnDate == null}"
+								accesskey="#{borrowBean.returnBook(borrow)}"
+								icon-awesome="reply" />
+						</b:dataTableColumn>
+					</c:when>
+					<c:otherwise>
+						<b:dataTableColumn value="#{borrow.book.name}"></b:dataTableColumn>
+						<b:dataTableColumn value="#{borrow.book.author}"></b:dataTableColumn>
+						<b:dataTableColumn value="#{borrow.user.username}"></b:dataTableColumn>
+						<b:dataTableColumn
+							value="#{borrow.dateOfBorrowing == null ? 'N/A' : borrow.dateOfBorrowing}"></b:dataTableColumn>
+						<b:dataTableColumn
+							value="#{borrow.returnDate == null ? 'N/A' : borrow.returnDate}"></b:dataTableColumn>
+					</c:otherwise>
+				</c:choose>
+			</b:dataTable>
+		</b:form>
+	</utils:MainTabs>
+</h:body>
 </html>

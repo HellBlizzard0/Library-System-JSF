@@ -2,16 +2,6 @@
 <faces-config version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
  <managed-bean>
-  <managed-bean-name>welcome</managed-bean-name>
-  <managed-bean-class>bean.Welcome</managed-bean-class>
-  <managed-bean-scope>session</managed-bean-scope>
-  <managed-property>
-   <property-name>message</property-name>
-   <property-class>java.lang.String</property-class>
-   <value/>
-  </managed-property>
- </managed-bean>
- <managed-bean>
   <managed-bean-name>bookBean</managed-bean-name>
   <managed-bean-class>bean.BookBean</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>
@@ -30,6 +20,39 @@
   <navigation-case>
    <from-outcome>Login</from-outcome>
    <to-view-id>/Login.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/BooksList.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>repeat</from-outcome>
+   <to-view-id>/BooksList.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>BorrowsList</from-outcome>
+   <to-view-id>/BorrowsList.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/resources/utils/MainTabs.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>BorrowsList</from-outcome>
+   <to-view-id>/BorrowsList.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>BooksList</from-outcome>
+   <to-view-id>/BooksList.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>Login</from-outcome>
+   <to-view-id>/Login.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/Login.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>BooksList</from-outcome>
+   <to-view-id>/BooksList.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
  <application/>

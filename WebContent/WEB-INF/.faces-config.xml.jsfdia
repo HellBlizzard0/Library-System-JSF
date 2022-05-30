@@ -12,7 +12,40 @@
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#BooksList.xhtml" PATH="/BooksList.xhtml"
-  SHAPE="296,112,50,25" model-entity="JSFProcessGroup" persistent="true"/>
+  SHAPE="360,104,50,25" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#BooksList.xhtml:0" NAME="item"
+   PATH="/BooksList.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="repeat::#BooksList.xhtml" NAME="output"
+    PATH="/BooksList.xhtml" TARGET="rules:#BooksList.xhtml"
+    TITLE="repeat" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="BorrowsList::#BorrowsList.xhtml"
+    NAME="output1" PATH="/BorrowsList.xhtml"
+    TARGET="rules:#BorrowsList.xhtml" TITLE="BorrowsList" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#Login.xhtml" PATH="/Login.xhtml"
-  SHAPE="296,200,50,25" model-entity="JSFProcessGroup" persistent="true"/>
+  SHAPE="208,192,50,41" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Login.xhtml:0" NAME="item"
+   PATH="/Login.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="BooksList::#BooksList.xhtml" NAME="output"
+    PATH="/BooksList.xhtml" TARGET="rules:#BooksList.xhtml"
+    TITLE="BooksList" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#BorrowsList.xhtml" PATH="/BorrowsList.xhtml"
+  SHAPE="488,248,50,25" model-entity="JSFProcessGroup" persistent="true"/>
+ <PROCESS-ITEM NAME="rules:#resources#utils#MainTabs.xhtml"
+  PATH="/resources/utils/MainTabs.xhtml" SHAPE="128,304,50,57" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#resources#utils#MainTabs.xhtml:0" NAME="item"
+   PATH="/resources/utils/MainTabs.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="BorrowsList::#BorrowsList.xhtml"
+    NAME="output" PATH="/BorrowsList.xhtml"
+    TARGET="rules:#BorrowsList.xhtml" TITLE="BorrowsList" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="BooksList::#BooksList.xhtml" NAME="output1"
+    PATH="/BooksList.xhtml" TARGET="rules:#BooksList.xhtml"
+    TITLE="BooksList" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="Login::#Login.xhtml" NAME="output2"
+    PATH="/Login.xhtml" TARGET="rules:#Login.xhtml" TITLE="Login" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
 </PROCESS>

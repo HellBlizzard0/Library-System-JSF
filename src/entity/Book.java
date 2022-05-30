@@ -13,6 +13,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.NamedQueries;
 import org.hibernate.annotations.NamedQuery;
 
+
 @NamedQueries({
 		@NamedQuery(name = "book_fetchAll", query = "from Book b") })
 
@@ -30,6 +31,7 @@ public class Book implements Serializable {
 	private String name;
 	@Column(name = "author")
 	private String author;
+
 	@Column(name = "date_of_creation")
 	private Timestamp dateOfCreation;
 

@@ -2,21 +2,38 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui">
 
-<h:head></h:head>
-<body>
-	<h1>
-		<h:outputText value="Login" />
-	</h1>
-	<h:form>
-		<h:outputLabel value="Username: " for="usernameID" />
-		<h:inputText id="usernameID" value="#{loginBean.user.username}" label="username" />
-		<br />
-		<h:outputLabel value="Password: " for="passwordID" />
-		<h:inputSecret value="#{loginBean.user.password}" label="password" />
-		<br />
-		<h:commandButton action="#{loginBean.login()}" value="Login" />
-	</h:form>
-</body>
+    <h:head>
+        <title>Sign In Template for BootsFaces</title>
+        <meta name="author" content="Riccardo Massera"></meta>
+        <style type="text/css">
+            .form-signin {
+                margin: 0 auto;
+                max-width: 330px;
+                padding: 15px;
+            }
+        </style>
+    </h:head>
+    <h:body style="padding-top: 60px; background-color: #add;">
+    
+        <b:container>
+            <h:form styleClass="form-signin" prependId="false">
+                <h2 class="form-signin-heading">Please sign in</h2>
+                <b:inputText id="username" placeholder="Username" value="#{loginBean.username}">
+                    <f:facet name="prepend">
+                        <b:icon name="user" />
+                    </f:facet>
+                </b:inputText>
+                <b:inputText id="password" placeholder="Password" type="password" value="#{loginBean.password}">
+                    <f:facet name="prepend">
+                        <b:iconAwesome name="key" />
+                    </f:facet>
+                </b:inputText>
+                <b:selectBooleanCheckbox value="true" caption="remember me"/>
+                <b:commandButton action="#{loginBean.login()}" look="primary btn-block" value="Sign In" icon="log-in" size="lg"/>
+            </h:form>
+        </b:container>
+    </h:body>
 </html>

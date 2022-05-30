@@ -1,44 +1,71 @@
 package bean;
 
+import javax.faces.application.Application;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import entity.User;
 import model.UserModel;
+import util.SessionFactory;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class LoginBean {
+
+	private String username;
+	private String password;
 
 	public LoginBean() {
 		super();
+		this.username = "";
+		this.password = "";
 	}
 
-	private User user;
 
-	public LoginBean(User user) {
-		super();
-		this.user = user;
-	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
+	public boolean isCustomer() {
+		return SessionFactory.isCustomer();
 	}
 
 	public String goTo() {
 		return "Login";
 	}
 
+
+	public String logout() {
+		this.username = "";
+		this.password = "";
+		return this.goTo();
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	public String login() {
-		User user = UserModel.login(this.user.getUsername(), this.user.getPassword());
+		User user = UserModel.login(this.username, this.password);
 		if(user == null) {
-			return "false";
+			return "failure";
 		} else {
-			return "true";
+			SessionFactory.put("user", user);
+			
+			FacesContext context = FacesContext.getCurrentInstance();
+			Application application = context.getApplication();
+			BookBean bookBean = application.evaluateExpressionGet(context, "#{bookBean}", BookBean.class);
+			return bookBean.goTo();
 		}
 	}
 }
