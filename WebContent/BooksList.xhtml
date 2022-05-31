@@ -5,7 +5,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:b="http://bootsfaces.net/ui"
 	xmlns:utils="http://java.sun.com/jsf/composite/utils"
-	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 <h:head>
 	<title>Books List</title>
 	<h:outputStylesheet library="css" name="bootstrap.css" />
@@ -14,6 +15,7 @@
 	<script type="js" src="resources/js/jquery-3.6.0.js" />
 </h:head>
 <h:body>
+
 	<utils:MainTabs tab="books">
 		<h1>Books List</h1>
 		<b:form>
@@ -54,58 +56,81 @@
 					</c:when>
 					<c:otherwise>
 						<b:dataTableColumn>
-							<b:commandButton icon-awesome="info" look="info" />
+							<b:commandButton icon-awesome="info" look="info"
+								action="#{bookInformationBean.goTo(book)}" />
 						</b:dataTableColumn>
 						<b:dataTableColumn>
-							<b:commandButton icon-awesome="edit" look="primary" />
+							<b:commandButton icon-awesome="edit" look="primary"
+								action="#{bookBean.toggleEdit(book)}" />
 						</b:dataTableColumn>
 						<b:dataTableColumn>
-							<b:commandButton icon-awesome="trash" look="danger"
-								action="#{bookBean.deleteBook(book)}" />
+							<b:commandButton icon-awesome="trash" look="danger" 
+								action="#{bookBean.toggleDelete(book)}"
+								 />
 						</b:dataTableColumn>
 					</c:otherwise>
 				</c:choose>
 			</b:dataTable>
-		</b:form>
-		<c:choose>
-			<c:when test="#{!loginBean.isCustomer()}">
-				<b:button value="Add New" look="success"
-					onclick="$('.modalPseudoClass').modal()" size="lg" />
-			</c:when>
-		</c:choose>
-		<b:modal id="amodal" title="New Book" styleClass="modalPseudoClass">
-			<b:inputText id="bookName" placeholder="Book Name"
-				value="#{bookBean.newBook.name}">
-				<f:facet name="prepend">
-					<b:icon name="book" />
-				</f:facet>
-			</b:inputText>
-			<b:inputText id="bookAuthor" placeholder="Author"
-				value="#{bookBean.newBook.author}">
-				<f:facet name="prepend">
-					<b:iconAwesome name="user" />
-				</f:facet>
-			</b:inputText>
-			<f:facet name="footer">
-				<b:form>
-					<b:commandButton id="btnCancel" value="Cancel" dismiss="modal"
-						action="#{bookBean.cancelAddEdit()}" />
-					<b:commandButton id="btnSubmit" value="Submit" dismiss="modal"
-						action="#{bookBean.addEditBook()}" look="primary" />
-				</b:form>
-			</f:facet>
-		</b:modal>
-		<b:modal id="bmodal" title="Delete Book" styleClass="modelDeleteBook">
 
-			<f:facet name="footer">
-				<b:form>
-					<b:commandButton id="btnCancel" value="Cancel" dismiss="modal"
+			<c:choose>
+				<c:when test="#{!loginBean.isCustomer()}">
+					<b:button value="Add New" look="success"
+						onclick="$('.modalPseudoClass').modal()" size="lg" />
+				</c:when>
+			</c:choose>
+
+			<b:modal id="amodal" title="New Book" styleClass="modalPseudoClass"
+				closable="false">
+				<b:inputText id="bookName" placeholder="Book Name"
+					value="#{bookBean.newBook.name}">
+					<f:facet name="prepend">
+						<b:icon name="book" />
+					</f:facet>
+				</b:inputText>
+				<b:inputText id="bookAuthor" placeholder="Author"
+					value="#{bookBean.newBook.author}">
+					<f:facet name="prepend">
+						<b:iconAwesome name="user" />
+					</f:facet>
+				</b:inputText>
+				<f:facet name="footer">
+					<b:commandButton id="btnCancel" value="Cancel"
 						action="#{bookBean.cancelAddEdit()}" />
-					<b:commandButton id="btnSubmit" value="Submit" dismiss="modal"
+					<b:commandButton id="btnSubmit" value="Submit"
 						action="#{bookBean.addEditBook()}" look="primary" />
-				</b:form>
-			</f:facet>
-		</b:modal>
+				</f:facet>
+			</b:modal>
+
+			<b:modal id="bmodal" title="Delete Book" styleClass="modelDeleteBook">
+				<f:facet name="footer">
+					<b:form>
+						<b:commandButton id="btnCancel" value="Cancel"
+							action="#{bookBean.cancelDelete()}" />
+						<b:commandButton id="btnSubmit" value="Submit"
+							action="#{bookBean.deleteBook()}" look="primary" />
+					</b:form>
+				</f:facet>
+			</b:modal>
+		</b:form>
 	</utils:MainTabs>
+
+	<c:choose>
+		<c:when test="#{bookBean.editBookMode}">
+			<script>
+				$( document ).ready(function() {
+					$('.modalPseudoClass').modal();
+				});
+</script>
+		</c:when>
+	</c:choose>
+		<c:choose>
+		<c:when test="#{bookBean.deleteMode}">
+			<script>
+				$( document ).ready(function() {
+					$('.modelDeleteBook').modal();
+				});
+</script>
+		</c:when>
+	</c:choose>
 </h:body>
 </html>

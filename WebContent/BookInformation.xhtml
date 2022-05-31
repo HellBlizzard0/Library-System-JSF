@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:utils="http://java.sun.com/jsf/composite/utils">
+
+<h:head></h:head>
+<h:body>
+	<utils:MainTabs tab="books">
+		<h2>
+			<h:outputText value="#{bookInformationBean.book.name}" />
+		</h2>
+		<h:outputText value="Author: #{bookInformationBean.book.author}" />
+
+		<b:dataTable value="#{bookInformationBean.borrows}" var="borrow">
+			<f:facet name="header">
+				<tr>
+					<th>Name</th>
+					<th>Borrow Date</th>
+					<th>Return Date</th>
+				</tr>
+			</f:facet>
+			<b:dataTableColumn value="#{borrow.user.username}"></b:dataTableColumn>
+			<b:dataTableColumn value="#{borrow.dateOfBorrowing}"></b:dataTableColumn>
+			<b:dataTableColumn
+				value="#{borrow.returnDate == null ? 'N/A' : borrow.returnDate}"></b:dataTableColumn>
+		</b:dataTable>
+		<b:form>
+			<b:commandButton value="Back" look="danger"
+				action="#{bookBean.goTo()}" size="lg" />
+		</b:form>
+	</utils:MainTabs>
+</h:body>
+</html>

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 
 import entity.Borrow;
 import entity.User;
@@ -14,14 +14,16 @@ import model.BorrowModel;
 import util.SessionFactory;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class BorrowBean {
 	private BorrowModel borrowModel = new BorrowModel();
 	private List<Borrow> borrows = new ArrayList<Borrow>();
 
 
 	public String goTo() {
+		this.borrows = null;
 		User user = (User) SessionFactory.get("user");
+
 		if (SessionFactory.isCustomer())
 			this.borrows = this.borrowModel.getBorrowsByUser(((User) SessionFactory.get("user")).getId());
 		else

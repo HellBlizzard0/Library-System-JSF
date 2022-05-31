@@ -1,19 +1,21 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:b="http://bootsfaces.net/ui"> 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui">
 
-<h:head></h:head> 
+<h:head></h:head>
 <h:body style="padding-top: 60px; background-color: #add;">
-    
-        <b:container>
-          		<h:form>
-          		<h1>Error 500</h1>
-          		<h:outputText value="Please check your console" />
-                <b:commandButton action="#{loginBean.login()}" look="primary btn-block" value="Sign In" icon="log-in" size="lg"/>
-            </h:form>
-        </b:container>
-    </h:body>
+
+	<b:container>
+		<h:form>
+			<h1>Error 500</h1>
+			<h:outputText value="Please check your console" />
+			<b:commandButton action="#{loginBean.logout()}"
+				look="primary btn-block" value="Return to Login" icon="log-in"
+				size="lg" />
+		</h:form>
+	</b:container>
+</h:body>
 </html>

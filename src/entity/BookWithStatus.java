@@ -29,4 +29,9 @@ public class BookWithStatus extends Book implements Serializable {
 		super(book.getId(), book.getName(), book.getAuthor(), book.getDateOfCreation(), book.getLastUpdated());
 		this.available = available;
 	}
+
+	public Book toBook() {
+		return new Book(super.getId(), super.getName(), super.getAuthor(), super.getDateOfCreation(),
+				super.getLastUpdated());
+	}
 }

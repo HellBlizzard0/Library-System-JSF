@@ -10,7 +10,7 @@ public class SessionFactory {
 	private static Session sessionObj = HibernateUtil.getSessionFactory().openSession();
 
 	public static Session getSessionObj() {
-		if(!sessionObj.isOpen())
+//		if(!sessionObj.isOpen())
 			sessionObj = HibernateUtil.getSessionFactory().openSession();
 		return sessionObj;
 	}

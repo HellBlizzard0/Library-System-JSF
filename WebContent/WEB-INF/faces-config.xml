@@ -32,6 +32,14 @@
    <from-outcome>BorrowsList</from-outcome>
    <to-view-id>/BorrowsList.xhtml</to-view-id>
   </navigation-case>
+  <navigation-case>
+   <from-outcome>BookInformation</from-outcome>
+   <to-view-id>/BookInformation.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>BooksList</from-outcome>
+   <to-view-id>/BooksList.xhtml</to-view-id>
+  </navigation-case>
  </navigation-rule>
  <navigation-rule>
   <from-view-id>/resources/utils/MainTabs.xhtml</from-view-id>

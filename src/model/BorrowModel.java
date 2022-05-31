@@ -41,6 +41,20 @@ public class BorrowModel {
 		return result;
 	}
 
+	public List<Borrow> getBorrowByBook(int id) {
+		List<Borrow> result = new ArrayList<Borrow>();
+		try {
+			transObj = SessionFactory.getSessionObj().beginTransaction();
+			Query queryObj = SessionFactory.getSessionObj().getNamedQuery("borrow_fetchByBookId");
+			queryObj.setParameter("P_BOOKID", id);
+			result = queryObj.list();
+
+		} catch (Exception exceptionObj) {
+			exceptionObj.printStackTrace();
+		}
+		return result;
+	}
+
 	public boolean isBorrowed() {
 		boolean result = false;
 		try {

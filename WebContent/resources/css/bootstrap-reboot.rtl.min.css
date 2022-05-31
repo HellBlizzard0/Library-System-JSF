@@ -38,10 +38,23 @@ hr {
 	opacity: .25
 }
 
-hr:not ([size] ){
-	height: 1px
-}
+hr
+:not
+ 
+(
+[
+size
+]
+ 
+){
+height
+:
+ 
+1
+px
 
+
+}
 h1, h2, h3, h4, h5, h6 {
 	margin-top: 0;
 	margin-bottom: .5rem;
@@ -269,10 +282,19 @@ button {
 	border-radius: 0
 }
 
-button:focus:not (:focus-visible ){
-	outline: 0
+button
+:focus
+:not
+ 
+(
+:focus-visible
+ 
+){
+outline
+:
+ 
+0
 }
-
 button, input, optgroup, select, textarea {
 	margin: 0;
 	font-family: inherit;
@@ -304,11 +326,54 @@ select:disabled {
 	-webkit-appearance: button
 }
 
-[type=button]:not (:disabled ), [type=reset]:not (:disabled ), [type=submit]:not
-	(:disabled ), button:not (:disabled ){
-	cursor: pointer
-}
+[
+type
+=
+button
+]
+:not
+ 
+(
+:disabled
+ 
+),
+[
+type
+=
+reset
+]
+:not
+ 
+(
+:disabled
+ 
+),
+[
+type
+=
+submit
+]
+:not
 
+	
+(
+:disabled
+ 
+),
+button
+:not
+ 
+(
+:disabled
+ 
+){
+cursor
+:
+ 
+pointer
+
+
+}
 ::-moz-focus-inner {
 	padding: 0;
 	border-style: none

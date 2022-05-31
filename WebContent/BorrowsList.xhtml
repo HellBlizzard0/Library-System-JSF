@@ -52,9 +52,10 @@
 						<b:dataTableColumn
 							value="#{borrow.returnDate == null ? 'N/A' : borrow.returnDate}"></b:dataTableColumn>
 						<b:dataTableColumn>
-							<b:commandButton rendered="#{borrow.returnDate == null}"
-								accesskey="#{borrowBean.returnBook(borrow)}"
-								icon-awesome="reply" />
+							<b:commandButton value="" rendered="#{borrow.returnDate == null}"
+								action="#{borrowBean.returnBook(borrow)}">
+								<b:iconAwesome value="reply"></b:iconAwesome>
+							</b:commandButton>
 						</b:dataTableColumn>
 					</c:when>
 					<c:otherwise>

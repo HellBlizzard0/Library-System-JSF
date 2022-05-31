@@ -18,7 +18,7 @@
 		<composite:attribute name="tab" required="true"></composite:attribute>
 	</composite:interface>
 	<composite:implementation>
-	
+
 		<h:form>
 			<!-- Nav Brand -->
 			<a class="navbar-brand" href="#">Library System</a>
@@ -31,14 +31,10 @@
 				</li>
 				<li class="nav-item"><b:commandLink
 						action="#{borrowBean.goTo()}"
-						class="nav-link #{mainTabsBean.checkActiveTab(1, cc.attrs.tab)}">Borrws</b:commandLink>
+						class="nav-link #{mainTabsBean.checkActiveTab(1, cc.attrs.tab)}">Borrows</b:commandLink>
 				</li>
 				<li class="nav-item"><b:commandLink
-						class="nav-link #{mainTabsBean.checkActiveTab(2, cc.attrs.tab)}">Profile</b:commandLink>
-
-				</li>
-								<li class="nav-item"><b:commandLink action="#{loginBean.logout()}"
-						class="nav-link ">Logout</b:commandLink>
+						action="#{loginBean.logout()}" class="nav-link ">Logout</b:commandLink>
 
 				</li>
 			</ul>

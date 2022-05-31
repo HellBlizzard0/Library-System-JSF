@@ -22,7 +22,8 @@ import org.hibernate.annotations.NamedQuery;
 				+ "and b.returnDate is null"),
 		@NamedQuery(name = "borrow_fetchByUserId", query = "from Borrow b " + "where b.user.id = :P_USERID "),
 		@NamedQuery(name = "borrow_isBookAvailable", query = "from Borrow b "
-				+ "where b.book.id = :P_BOOKID " + "and b.returnDate is null") })
+				+ "where b.book.id = :P_BOOKID " + "and b.returnDate is null"),
+		@NamedQuery(name = "borrow_fetchByBookId", query = "from Borrow b " + "where b.book.id = :P_BOOKID") })
 
 @Entity
 @Table(name = "borrow")
@@ -100,8 +101,7 @@ public class Borrow implements Serializable {
 	private Book book;
 
 	@Column(name = "date_of_borrowing")
-	
 	private Timestamp dateOfBorrowing;
-@Column(name = "return_date")
+	@Column(name = "return_date", nullable = true, insertable = false)
 	private Timestamp returnDate;
 }

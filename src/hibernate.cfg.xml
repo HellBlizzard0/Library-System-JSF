@@ -11,9 +11,10 @@
 		<property name="hibernate.connection.password">00000000</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 		<property name="hibernate.current_session_context_class">thread</property>
-		<mapping class="entity.Book" /><mapping class="entity.Role" />
+		<mapping class="entity.Book" />
+		<mapping class="entity.Role" />
 		<mapping class="entity.User" />
-		
+
 		<mapping class="entity.Borrow" />
 
 	</session-factory>
