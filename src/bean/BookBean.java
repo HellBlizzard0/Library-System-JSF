@@ -16,6 +16,7 @@ import entity.Borrow;
 import entity.User;
 import model.BookModel;
 import model.BorrowModel;
+import net.bootsfaces.utils.FacesMessages;
 import util.SessionFactory;
 
 @ManagedBean
@@ -63,8 +64,6 @@ public class BookBean implements Serializable {
 	}
 
 
-
-
 	public BookWithStatus getNewBook() {
 		return newBook;
 	}
@@ -99,6 +98,8 @@ public class BookBean implements Serializable {
 		this.borrowModel.create(new Borrow(1, (User) SessionFactory.get("user"), book,
 				Timestamp.valueOf(LocalDateTime.now()),
 				null));
+
+		FacesMessages.info("Borrow Successful!", book.getName() + " has been borrowed successfully!");
 
 		FacesContext context = FacesContext.getCurrentInstance();
 		Application application = context.getApplication();

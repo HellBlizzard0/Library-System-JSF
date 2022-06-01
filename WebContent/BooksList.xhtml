@@ -50,7 +50,7 @@
 				<c:choose>
 					<c:when test="#{loginBean.isCustomer()}">
 						<b:dataTableColumn>
-							<b:commandButton action="#{bookBean.borrowBook(book)}"
+							<b:commandButton rendered="#{book.available}" action="#{bookBean.borrowBook(book)}"
 								icon-awesome="edit" look="primary" />
 						</b:dataTableColumn>
 					</c:when>

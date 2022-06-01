@@ -36,6 +36,8 @@
    <PROCESS-ITEM-OUTPUT ID="BooksList::#BooksList.xhtml" NAME="output"
     PATH="/BooksList.xhtml" TARGET="rules:#BooksList.xhtml"
     TITLE="BooksList" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="Signup::#Signup.xhtml" NAME="output1"
+    PATH="/Signup.xhtml" TARGET="rules:#Signup.xhtml" TITLE="Signup" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#BorrowsList.xhtml" PATH="/BorrowsList.xhtml"
@@ -57,4 +59,14 @@
  <PROCESS-ITEM NAME="rules:#BookInformation.xhtml"
   PATH="/BookInformation.xhtml" SHAPE="480,320,50,25"
   model-entity="JSFProcessGroup" persistent="true"/>
+ <PROCESS-ITEM NAME="rules:#Signup.xhtml" PATH="/Signup.xhtml"
+  SHAPE="328,406,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Signup.xhtml:0" NAME="item"
+   PATH="/Signup.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="Login::#Login.xhtml" NAME="output"
+    PATH="/Login.xhtml" TARGET="rules:#Login.xhtml" TITLE="Login" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="Signup::#Signup.xhtml" NAME="output1"
+    PATH="/Signup.xhtml" TARGET="rules:#Signup.xhtml" TITLE="Signup" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
 </PROCESS>

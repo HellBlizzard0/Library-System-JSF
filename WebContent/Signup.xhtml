@@ -20,7 +20,7 @@
 
 	<b:container>
 		<h:form styleClass="form-signin" prependId="false">
-			<h2 class="form-signin-heading">Please sign in</h2>
+			<h2 class="form-signin-heading">Please sign up</h2>
 			<b:inputText id="username" placeholder="Username"
 				value="#{loginBean.username}">
 				<f:facet name="prepend">
@@ -33,10 +33,19 @@
 					<b:iconAwesome name="key" />
 				</f:facet>
 			</b:inputText>
+			<b:inputText id="repeat" placeholder="Password" type="password"
+				value="#{loginBean.repeat}">
+				<f:facet name="prepend">
+					<b:iconAwesome name="key" />
+				</f:facet>
+			</b:inputText>
 			<br />
-			<b:commandButton action="#{loginBean.login()}"
-				look="primary btn-block" value="Sign In" icon="log-in" size="lg" />
-			<b:commandLink action="Signup" value="Don't have an account? Sign up here."></b:commandLink>
+			<b:commandButton action="#{loginBean.signup()}" update="@form"
+				look="primary btn-block" value="Sign Up" icon="Sign-in" size="lg" />
+			<b:commandLink action="Login" value="Already have an account? Go to Sign in."></b:commandLink>
+			        <b:growl id="growlMsg" globalOnly="true" placementFrom="bottom"
+                 show-detail="true" show-summary="false" allowDismiss="true"
+                 delay="10000" escape="true" />
 		</h:form>
 	</b:container>
 </h:body>

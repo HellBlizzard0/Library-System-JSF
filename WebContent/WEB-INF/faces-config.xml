@@ -62,6 +62,21 @@
    <from-outcome>BooksList</from-outcome>
    <to-view-id>/BooksList.xhtml</to-view-id>
   </navigation-case>
+  <navigation-case>
+   <from-outcome>Signup</from-outcome>
+   <to-view-id>/Signup.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/Signup.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>Login</from-outcome>
+   <to-view-id>/Login.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>Signup</from-outcome>
+   <to-view-id>/Signup.xhtml</to-view-id>
+  </navigation-case>
  </navigation-rule>
  <application/>
 </faces-config>

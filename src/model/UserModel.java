@@ -5,6 +5,7 @@ import java.security.NoSuchAlgorithmException;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import entity.User;
 import util.SessionFactory;
@@ -28,6 +29,33 @@ public class UserModel {
 			e.printStackTrace();
 		}
 
+		return null;
+	}
+
+	public static User create(User user) {
+		boolean result = true;
+		Session session = null;
+		Transaction transaction = null;
+
+		String decrypted = user.getPassword();
+		user.setPassword(encrypt(user.getPassword()));
+
+		try {
+			session = SessionFactory.getSessionObj();
+			transaction = session.beginTransaction();
+			session.save(user);
+			transaction.commit();
+			
+			return login(user.getUsername(), decrypted);
+		} catch (Exception e) {
+			result = false;
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			// session.close();
+		}
 		return null;
 	}
 
