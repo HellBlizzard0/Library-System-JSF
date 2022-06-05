@@ -78,5 +78,8 @@
    <to-view-id>/Signup.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
- <application/>
+ 
+ <application/><lifecycle>
+  <phase-listener>util.CustomPhaseListener</phase-listener>
+ </lifecycle>
 </faces-config>

@@ -23,6 +23,10 @@ public class SessionFactory {
 		return FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get(key);
 	}
 
+	public static void clear() {
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().clear();
+	}
+
 	public static boolean isCustomer() {
 		return ((User) SessionFactory.get("user")).getRole().getName().contains("CUSTOMER");
 	}

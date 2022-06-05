@@ -22,7 +22,7 @@
 	<utils:MainTabs tab="borrows">
 		<h1>Borrows List</h1>
 		<b:form>
-			<b:dataTable value="#{borrowBean.borrows}" var="borrow">
+			<b:dataTable paginated="" value="#{borrowBean.borrows}" var="borrow" >
 				<f:facet name="header">
 					<c:choose>
 						<c:when test="#{loginBean.isCustomer()}">

@@ -47,6 +47,8 @@ public class LoginBean {
 	public String logout() {
 		this.username = "";
 		this.password = "";
+		SessionFactory.clear();
+		
 		return this.goTo();
 	}
 

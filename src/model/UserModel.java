@@ -12,13 +12,31 @@ import util.SessionFactory;
 
 public class UserModel {
 
-
 	public static User login(String username, String password) {
 		Session session = null;
 		String encrypted = null;
 		try {
 			session = SessionFactory.getSessionObj();
 			encrypted = encrypt(password);
+			Query query = session.getNamedQuery("user_login");
+			query.setParameter("P_USERNAME", username);
+			query.setParameter("P_PASSWORD", encrypted);
+			User user = (User) query.list().get(0);
+
+			return user;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
+	private static User loginWithoutEncryption(String username, String password) {
+		Session session = null;
+		String encrypted = null;
+		try {
+			session = SessionFactory.getSessionObj();
+			encrypted = password;
 			Query query = session.getNamedQuery("user_login");
 			query.setParameter("P_USERNAME", username);
 			query.setParameter("P_PASSWORD", encrypted);
@@ -45,7 +63,7 @@ public class UserModel {
 			transaction = session.beginTransaction();
 			session.save(user);
 			transaction.commit();
-			
+
 			return login(user.getUsername(), decrypted);
 		} catch (Exception e) {
 			result = false;
@@ -79,5 +97,16 @@ public class UserModel {
 			e.printStackTrace();
 		}
 		return encryptedpassword;
+	}
+
+	public static boolean isLoggedIn(Object obj) {
+		User user = (User) obj;
+		if (user == null)
+			return false;
+		else if (loginWithoutEncryption(user.getUsername(), user.getPassword()) == null)
+			return false;
+		else
+			return true;
+
 	}
 }
